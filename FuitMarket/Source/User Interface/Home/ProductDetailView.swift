@@ -80,7 +80,7 @@ private extension ProductDetailView {
             self.showingAlert = true
         }) {
             Capsule().fill(Color.peach).frame(maxWidth: .infinity, minHeight: 30, maxHeight: 55).overlay(Text("주문하기").font(.system(size:20)).fontWeight(.medium).foregroundColor(Color.white)).padding(.vertical, 8)
-        }
+        }.buttonStyle(ShrinkButtonStyle())
     }
     
     var confirmAlert: Alert {

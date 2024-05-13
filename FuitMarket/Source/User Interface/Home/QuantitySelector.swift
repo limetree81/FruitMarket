@@ -65,5 +65,4 @@ struct QuantitySelector_Previews: PreviewProvider {
         .padding()
         .previewLayout(.sizeThatFits)
     }
-    //얘도 변경 안되는데?
 }
