@@ -15,11 +15,17 @@ struct ProductDetailView: View {
     
     @EnvironmentObject private var store: Store
     
+    @State private var showingPopup: Bool = false
     var body: some View {
         VStack(spacing: 0){
             productImage
             orderView
         }
+        .popup(isPresented: $showingPopup) {OrderCompletedMessage()}
+        //.modifier(Popup(message: Text("팝업")))
+        //.modifier(Popup(style: .blur, message: Text("팝업")))
+        //.modifier(Popup(size: CGSize(width: 200, height: 200), style: .blur ,message: Text("팝업"))
+        
         //.edgesIgnoringSafeArea(.top)
         .ignoresSafeArea(edges:.top)
         .alert(isPresented: $showingAlert) { confirmAlert }
@@ -95,6 +101,7 @@ private extension ProductDetailView {
     
     func placeOrder(){
         store.placeOrder(product: product, quantity: quantity)
+        showingPopup = true
     }
 }
 
