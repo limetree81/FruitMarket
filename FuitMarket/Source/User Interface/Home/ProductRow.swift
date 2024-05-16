@@ -20,8 +20,6 @@ struct ProductRow: View {
             .padding(.vertical, 8)
     }
     let product: Product
-    @EnvironmentObject var store: Store
-    @Binding var quickOrder: Product?
 }
 
 private extension ProductRow {
@@ -53,25 +51,17 @@ private extension ProductRow {
             FavoriteButton(product: product)
             Symbol("cart", color: .peach)
                 .frame(width: 32, height: 32)
-                .onTapGesture {
-                    self.orderProduct()
-                }
         }
     }
-    func orderProduct() {
-        quickOrder = product
-        store.placeOrder(product: product, quantity: 1)
-    }
 }
-
 
 struct ProductRow_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             ForEach(productSamples) {
-                ProductRow(product: $0, quickOrder: .constant(nil))
+                ProductRow(product: $0)
             }
-            ProductRow(product: productSamples[0], quickOrder: .constant(nil)).preferredColorScheme(.dark)
+            ProductRow(product: productSamples[0]).preferredColorScheme(.dark)
         }.padding().previewLayout(.sizeThatFits)
         
     }
